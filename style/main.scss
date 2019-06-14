@@ -30,7 +30,7 @@ $background-light: rgb(243, 239, 239);
 $background-dark: rgb(74, 75, 92);
 $background-red: rgb(194, 55, 55);
 $font-color-white: rgba(255, 255, 255, 0.8);
-$font-color-gray: rgb(133, 136, 148);
+$font-color-gray: rgb(126, 129, 139);
 $font-color-dark: rgb(35, 31, 32);
 
 html {
@@ -78,11 +78,22 @@ body {
 
   a {
     @include link;
-  }
 
-  img {
-    @media(max-width: $sm-screen) {
-      height: 45px;
+
+    img {
+      height: 40px;
+
+      @media(min-width: $sm-screen) {
+        height: 60px;
+      }
+
+      @media(min-width: $md-screen) {
+        height: auto;
+      }
+    }
+
+    @media(min-width: $md-screen) {
+      text-align: start;
     }
   }
 }
@@ -91,7 +102,7 @@ body {
   display: flex;
   justify-content: center;
 
-  @media(min-width: $sm-screen) {
+  @media(min-width: $md-screen) {
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
@@ -108,18 +119,20 @@ body {
   font-size: 0.9rem;
   font-weight: bold;
 
-  @media(min-width: $sm-screen) {
+  @media(min-width: $md-screen) {
     margin: 0;
     margin-bottom: 20px;
     text-align: end;
   }
 
   @media(min-width: $xl-screen) {
-    margin-right: 30px;
-  }
-
-  @media(min-width: $xl-screen) {
+    display: flex;
+    flex-direction: row;
     margin-bottom: 0;
+
+    .header__contact {
+      margin-right: 30px;
+    }
   }
 }
 
@@ -193,6 +206,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media(min-width: $md-screen) {
+    margin-left: 20px;
+  }
 }
 
 .header__social a {
@@ -208,7 +225,7 @@ body {
   display: flex;
   justify-content: center;
 
-  @media(min-width: $sm-screen) {
+  @media(min-width: $md-screen) {
     justify-content: flex-end;
   }
 }
@@ -258,7 +275,7 @@ body {
 
   h1 {
     color: #fff;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 
     @media(max-width: $sm-screen) {
       font-size: 1.1rem;
@@ -312,15 +329,12 @@ body {
   background-color: $background-light;
 }
 
-.description__container .row {
-  position: relative;
-}
-
 .description__title {
-  font-size: 1.3rem;
+  font-size: 1rem;
+  font-weight: bold;
 
-  @media(min-width: $xxl-screen) {
-    font-size: 1.6rem;
+  @media(min-width: $sm-screen) {
+    font-size: 1.3rem;
   }
 }
 
@@ -328,85 +342,126 @@ body {
   font-size: 0.7rem;
   color: $font-color-gray;
 
-  @media(min-width: $xl-screen) {
-    font-size: 0.97rem;
+  @media(min-width: $lg-screen) {
+    font-size: 0.9rem;
   }
 }
 
 .description__list {
-  position: absolute;
-  right: 0;
-  top: -110px;
-  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
 
   .description__title {
-    position: relative;
-    padding: 1.6rem;
-    border-top-left-radius: 30px;
-    border-bottom: 2px solid $background-light;
-    background-color: #fff;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      content: "";
-      width: 88px;
-      height: 100%;
-      background: url("/img/svg-icons/arrow-down2.svg") no-repeat 50% 50%;
-      background-size: 30%;
-      background-color: $background-light;
-    }
-
-    p {
-      font-size: 1.2rem;
-
-      @media(min-width: $xl-screen) {
-        font-size: 1.4rem;
-      }
-    }
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
   }
 
   ul {
-    list-style: none;
-    padding-left: 0;
-    background-color: #fff;
+    @include list;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
   }
-}
 
-.description__items {
-  text-transform: uppercase;
-  border-bottom: 2px solid $background-light;
+  .description__items {
+    padding: 0.8rem;
+    border-right: 1px solid $background-red;
+    border-left: 1px solid $background-red;
 
-  &:first-of-type {
+    @media(min-width: $md-screen) {
+      font-size: 0.9rem;
+    }
+  }
+
+  .description__link {
+    font-size: 0.8rem;
+  }
+
+  @media(min-width: $xl-screen) {
+    display: block;
+    margin-top: -110px;
+    font-size: 0.8rem;
+
+    .description__title {
+      position: relative;
+      width: auto;
+      margin-top: 0;
+      padding: 1.7rem;
+      padding-left: 3rem;
+      font-size: 1.2rem;
+      text-align: start;
+      border-top-left-radius: 30px;
+      border-bottom: 2px solid $background-light;
+      background-color: #fff;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "";
+        width: 80px;
+        height: 100%;
+        background: url("/img/svg-icons/arrow-down2.svg") no-repeat 50% 50%;
+        background-size: 25%;
+        background-color: $background-light;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    ul {
+      display: block;
+      width: 100%;
+      list-style: none;
+      padding-left: 0;
+      background-color: #fff;
+    }
+
+    .description__items {
+      padding: 0;
+      text-transform: uppercase;
+      border: none;
+      border-bottom: 2px solid $background-light;
+
+      &:first-of-type {
+        a.description__link {
+          &::before {
+            background-color: $background-red;
+          }
+        }
+      }
+    }
+
     a.description__link {
+      position: relative;
+      display: block;
+      margin-left: 60px;
+      padding: 1.7rem;
+
       &::before {
-        background-color: $background-red;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $background-light;
+        transform: translateY(-50%);
       }
     }
   }
 }
 
 a.description__link {
-  position: relative;
-  display: block;
-  margin-left: 60px;
-  padding: 2rem;
   color: $font-color-dark;
 
   @include link;
-
-  &::before {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: $background-light;
-    transform: translateY(-50%);
-  }
 }
 
 .description__video-container {
@@ -420,12 +475,17 @@ a.description__link {
     right: 0;
     margin: auto;
     content: "";
-    width: 100px;
-    height: 100px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background: url("/img/svg-icons/play-button.svg") no-repeat 60% 50%;
     background-size: 60%;
     background-color: rgba(255, 255, 255, 0.5);
+
+    @media (min-width: $md-screen) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   &:hover {
@@ -443,6 +503,7 @@ a.description__link {
 }
 
 .description__video {
+  width: 100%;
 
   &[poster] {
     background: url("/img/impulse120-video.jpg");
@@ -450,6 +511,7 @@ a.description__link {
   }
 
   @media(min-width: $xl-screen) {
+    max-width: 100%;
     width: 416px;
     height: 385px;
   }
@@ -481,6 +543,7 @@ a.description__link {
 .footer {
   color: $font-color-white;
   background: url("/img/bg-footer-1.jpg") no-repeat 50% 50%;
+  background-size: cover;
 }
 
 .footer .container-fluid {
@@ -489,6 +552,7 @@ a.description__link {
 
 .footer__nav,
 .footer__contacts {
+
   display: flex;
   flex-direction: column;
   min-height: 350px;
@@ -500,11 +564,31 @@ a.description__link {
     color: $font-color-white;
     border-bottom: 1px solid $background-white;
   }
+
+  @media(max-width: $sm-screen) {
+    align-items: center;
+    min-height: 220px;
+  }
 }
 
 .footer__nav-list {
   list-style: none;
   padding-left: 0;
+
+  @media(max-width: $sm-screen) {
+    display: flex;
+    flex-direction: row;
+
+    .footer__nav-item {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      a {
+        text-align: center;
+      }
+    }
+  }
 }
 
 .footer__nav-item {
@@ -514,7 +598,7 @@ a.description__link {
   font-weight: 700;
 
   a {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: $font-color-white;
 
     @include link;
@@ -534,7 +618,7 @@ a.description__link {
 .footer__contact-list {
   list-style: none;
   padding-left: 0;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
 }
 
 .footer__contact-item {
@@ -549,6 +633,16 @@ a.description__link {
     height: 40px;
     border-radius: 50%;
     transform: translateY(-50%);
+
+    @media (max-width: $md-screen) {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width: $lg-screen) {
+      width: 35px;
+      height: 35px;
+    }
   }
 }
 
