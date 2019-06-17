@@ -46,6 +46,7 @@ body {
     right: 0;
     bottom: 0;
     width: 100vw;
+    max-height: 135px;
     -webkit-transform: skewX(16deg);
             transform: skewX(16deg);
     background-color: #fff;
